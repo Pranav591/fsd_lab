@@ -1,21 +1,18 @@
-# Merged App — exp2 + exp3 + exp4 + exp5 + exp6
 
-One full-stack app that combines all five experiments:
 
-| Experiment | What it was | Where it ended up |
-|---|---|---|
-| exp2 | Static profile page | `client/src/pages/Profile.jsx` — the Profile tab |
-| exp3 | DOM events + live preview + theme toggle | Live preview in `AddTaskForm.jsx`, dark-mode toggle in `Navbar.jsx` / `App.jsx` |
-| exp4 | Stateful vanilla-JS to-do app (remaining count, clear completed) | "N of M tasks remaining" + "Clear completed" in `pages/Tasks.jsx` |
-| exp5 | React task board (components, props) | `components/TaskCard.jsx`, `Column.jsx`, `AddTaskForm.jsx`, board layout |
-| exp6 | Express REST API for tasks | `server/` — untouched except for added CORS support |
+## Application Workflow
 
-Previously exp5's task board only held state in memory (`useState`), and
-exp6's API had no UI. Now the React board in `client/` calls the exp6 API
-(`client/src/api/tasks.js`) for every add/toggle/delete/clear-completed
-action, so tasks persist as long as the server is running. The Profile
-page (exp2) links to it, and the Tasks page carries the dark mode toggle
-from exp3.
+The application starts with a simple navigation bar that allows the user to move between the **Profile** and **Tasks** sections. The Profile section displays the user's profile information, while the Tasks section provides the main task management features.
+
+In the Tasks section, the user can add a new task using the input form. A live preview is displayed while entering the task details. Once the task is added, it appears on the task board. Users can mark tasks as completed, delete individual tasks, or clear all completed tasks. The application also keeps track of how many tasks are still remaining.
+
+The task operations are connected to a backend REST API. Whenever a task is added, updated, deleted, or cleared, the frontend sends the appropriate request to the Express server. The server processes the request and sends the updated task information back to the application.
+
+The application also includes a **dark/light mode toggle**, allowing the user to change the appearance of the interface.
+
+The backend currently stores the tasks in memory, so the tasks remain available while the server is running. If the server is restarted, the task list is reset to the initial data.
+
+To run the application, the backend server is started first, followed by the React development server. Once both are running, the application can be opened in the browser and all the features can be used.
 
 ## Structure
 
